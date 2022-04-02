@@ -3,16 +3,21 @@ package com.rex50.zocketassignment.utils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.rex50.zocketassignment.R
 
 @JvmOverloads
 fun AppCompatActivity.replaceFragment(
     containerId: Int,
     fragment: Fragment,
+    isAnimated: Boolean = false,
     transaction: (FragmentTransaction.() -> Unit)? = null
 ) {
     supportFragmentManager.apply {
         val tr = beginTransaction()
         tr.replace(containerId, fragment)
+        if (isAnimated) {
+            tr.setCustomAnimations(R.anim.slide_in, R.anim.fade_out, R.anim.fade_in, R.anim.slide_out)
+        }
         if (transaction != null) {
             tr.transaction()
         }

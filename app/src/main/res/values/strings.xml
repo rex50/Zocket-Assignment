@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">Zocket Assignment</string>
     <string name="login_with_facebook">Login with facebook</string>
+    <string name="update">Update</string>
+    <string name="change_page">Change page</string>
+    <string name="selected_page">Selected page</string>
+
+
+    <!--  TODO: Can store keys in Env() variable for better security  -->
+    <string name="facebook_app_id">666984617904909</string>
+    <string name="facebook_app_secret">e64b6d48ca6587416a9d304d1092330f</string>
+    <string name="facebook_client_token">dbeca22d0b61bb28093f45b563d08888</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="group_picture">Group picture</string>
+    <string name="update_page_details">Update page details</string>
 </resources>

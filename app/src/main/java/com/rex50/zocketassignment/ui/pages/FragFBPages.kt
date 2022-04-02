@@ -1,0 +1,90 @@
+package com.rex50.zocketassignment.ui.pages
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import com.rex50.zocketassignment.databinding.FragFBPagesBinding
+import com.rex50.zocketassignment.ui.base.BaseFragmentWithListener
+import com.rex50.zocketassignment.utils.Status
+import com.rex50.zocketassignment.utils.collectLatestWithLifecycle
+import com.rex50.zocketassignment.utils.extensions.showToast
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+
+@AndroidEntryPoint
+class FragFBPages : BaseFragmentWithListener<FragFBPagesBinding, FragFBPages.OnFragFBPagesInteractionListener>() {
+
+    companion object {
+        fun newInstance() = FragFBPages()
+    }
+
+    private val viewModel: FragFBPagesViewModel by viewModels()
+
+    private val pagesAdapter: PageListAdapter by lazy { PageListAdapter() }
+
+    override fun inflateViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragFBPagesBinding {
+        return FragFBPagesBinding.inflate(inflater, container, false)
+    }
+
+    override fun initView() {
+        initRecycler()
+
+        initClicks()
+
+        setupObservers()
+    }
+
+    override fun load() {
+        viewModel.fetchPages()
+    }
+
+    private fun initRecycler() {
+        binding?.recPages?.let { recyclerView ->
+            recyclerView.adapter = pagesAdapter
+        }
+    }
+
+    private fun initClicks() {
+        pagesAdapter.onPageClicked = { page ->
+            fragScope?.launch {
+                viewModel.setSelectedPage(page)
+                listener?.onPageSelected()
+            }
+        }
+    }
+
+    private fun setupObservers() {
+        viewModel.pagesFlow.collectLatestWithLifecycle(this) { data ->
+            when(data.responseType) {
+                Status.LOADING -> {
+                    showLoader(true)
+                }
+
+                Status.SUCCESSFUL -> {
+                    showLoader(false)
+                    data.data?.let { list ->
+                        pagesAdapter.updatePages(list)
+                    }
+                }
+
+                Status.ERROR -> {
+                    showLoader(false)
+                    showToast("Problem while getting your pages")
+                }
+            }
+        }
+    }
+
+    private fun showLoader(show: Boolean) {
+        binding?.progressBar?.visibility = if(show) View.VISIBLE else View.GONE
+    }
+
+    interface OnFragFBPagesInteractionListener {
+        fun onPageSelected()
+    }
+
+}
