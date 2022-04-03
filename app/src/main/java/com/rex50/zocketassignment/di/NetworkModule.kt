@@ -1,6 +1,6 @@
 package com.rex50.zocketassignment.di
 
-import com.anywhere.inbox.network.interceptors.RequestInterceptor
+import com.rex50.zocketassignment.data.datasource.remote.interceptors.RequestInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory

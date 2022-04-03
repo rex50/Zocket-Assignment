@@ -1,4 +1,4 @@
-package com.anywhere.inbox.network.interceptors
+package com.rex50.zocketassignment.data.datasource.remote.interceptors
 
 import okhttp3.Interceptor
 import okhttp3.Response
