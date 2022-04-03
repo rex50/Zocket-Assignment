@@ -9,7 +9,7 @@ import com.facebook.*
 import com.facebook.login.LoginResult
 import com.rex50.zocketassignment.R
 import com.rex50.zocketassignment.data.models.LongLivedTokenRequest
-import com.rex50.zocketassignment.databinding.FragFBLoginBinding
+import com.rex50.zocketassignment.databinding.FragLoginBinding
 import com.rex50.zocketassignment.ui.base.BaseFragmentWithListener
 import com.rex50.zocketassignment.utils.extensions.showToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,30 +17,27 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class FragFBLogin : BaseFragmentWithListener<FragFBLoginBinding, FragFBLogin.OnFragFBLoginInteractionListener>() {
+class FragLogin : BaseFragmentWithListener<FragLoginBinding, FragLogin.OnFragFBLoginInteractionListener>() {
 
     companion object {
         private const val TAG = "FragFBLogin"
 
         private const val EMAIL = "email"
         private const val PUBLIC_PROFILE = "public_profile"
-        private const val USER_FRIENDS = "user_friends"
-        private const val PAGE_LIST = "page_show_list"
-        private const val MANAGER_PAGES = "manage_pages"
         private const val BUSINESS_MANAGEMENT = "business_management"
 
-        fun newInstance() = FragFBLogin()
+        fun newInstance() = FragLogin()
     }
 
-    private val viewModel: FragFBLoginViewModel by viewModels()
+    private val viewModel: FragLoginViewModel by viewModels()
 
     private lateinit var fbCallbackManager: CallbackManager
 
     override fun inflateViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragFBLoginBinding {
-        return FragFBLoginBinding.inflate(inflater, container, false)
+    ): FragLoginBinding {
+        return FragLoginBinding.inflate(inflater, container, false)
     }
 
     override fun initView() {
@@ -63,7 +60,7 @@ class FragFBLogin : BaseFragmentWithListener<FragFBLoginBinding, FragFBLogin.OnF
         fbCallbackManager = CallbackManager.Factory.create()
         binding?.loginButton?.apply {
             setPermissions(listOf(EMAIL, PUBLIC_PROFILE, BUSINESS_MANAGEMENT))
-            fragment = this@FragFBLogin
+            fragment = this@FragLogin
             registerCallback(fbCallbackManager, object : FacebookCallback<LoginResult?> {
                 override fun onSuccess(result: LoginResult?) {
                     result?.accessToken?.let { token ->

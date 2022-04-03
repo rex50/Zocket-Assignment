@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.rex50.zocketassignment.databinding.FragFBPagesBinding
+import com.rex50.zocketassignment.databinding.FragPagesBinding
 import com.rex50.zocketassignment.ui.base.BaseFragmentWithListener
 import com.rex50.zocketassignment.utils.Status
 import com.rex50.zocketassignment.utils.collectLatestWithLifecycle
@@ -13,21 +13,21 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class FragFBPages : BaseFragmentWithListener<FragFBPagesBinding, FragFBPages.OnFragFBPagesInteractionListener>() {
+class FragPages : BaseFragmentWithListener<FragPagesBinding, FragPages.OnFragFBPagesInteractionListener>() {
 
     companion object {
-        fun newInstance() = FragFBPages()
+        fun newInstance() = FragPages()
     }
 
-    private val viewModel: FragFBPagesViewModel by viewModels()
+    private val viewModel: FragPagesViewModel by viewModels()
 
     private val pagesAdapter: PageListAdapter by lazy { PageListAdapter() }
 
     override fun inflateViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragFBPagesBinding {
-        return FragFBPagesBinding.inflate(inflater, container, false)
+    ): FragPagesBinding {
+        return FragPagesBinding.inflate(inflater, container, false)
     }
 
     override fun initView() {

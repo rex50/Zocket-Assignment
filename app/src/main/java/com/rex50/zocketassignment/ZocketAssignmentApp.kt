@@ -1,6 +1,7 @@
 package com.rex50.zocketassignment
 
 import android.app.Application
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import com.pixplicity.easyprefs.library.Prefs
@@ -22,6 +23,9 @@ class ZocketAssignmentApp: Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
         Prefs.Builder()
             .setContext(this)
             .setMode(MODE_PRIVATE)

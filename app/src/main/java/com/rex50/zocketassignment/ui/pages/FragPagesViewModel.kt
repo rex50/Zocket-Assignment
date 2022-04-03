@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FragFBPagesViewModel
+class FragPagesViewModel
 @Inject
 constructor(
     private val pagesRepo: PagesRepo

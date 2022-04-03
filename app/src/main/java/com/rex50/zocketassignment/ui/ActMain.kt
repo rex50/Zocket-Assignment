@@ -5,16 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import com.rex50.zocketassignment.R
 import com.rex50.zocketassignment.databinding.ActMainBinding
 import com.rex50.zocketassignment.ui.page.FragPageDetails
-import com.rex50.zocketassignment.ui.login.FragFBLogin
-import com.rex50.zocketassignment.ui.pages.FragFBPages
+import com.rex50.zocketassignment.ui.login.FragLogin
+import com.rex50.zocketassignment.ui.pages.FragPages
 import com.rex50.zocketassignment.utils.getFbHashKey
 import com.rex50.zocketassignment.utils.replaceFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ActMain : AppCompatActivity(),
-    FragFBLogin.OnFragFBLoginInteractionListener,
-    FragFBPages.OnFragFBPagesInteractionListener,
+    FragLogin.OnFragFBLoginInteractionListener,
+    FragPages.OnFragFBPagesInteractionListener,
     FragPageDetails.OnFragHomeInteractionListener {
 
     private lateinit var homeBinding: ActMainBinding
@@ -50,7 +50,7 @@ class ActMain : AppCompatActivity(),
     private fun loadLoginPage() {
         replaceFragment(
             containerId = fragmentContainer,
-            fragment = FragFBLogin.newInstance(),
+            fragment = FragLogin.newInstance(),
             isAnimated = true
         )
     }
@@ -58,7 +58,7 @@ class ActMain : AppCompatActivity(),
     private fun loadPageListPage() {
         replaceFragment(
             containerId = fragmentContainer,
-            fragment = FragFBPages.newInstance(),
+            fragment = FragPages.newInstance(),
             isAnimated = true
         )
     }
