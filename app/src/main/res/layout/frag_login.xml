@@ -7,22 +7,6 @@
     tools:context=".ui.ActMain"
     android:animateLayoutChanges="true">
 
-    <!--<de.timonknispel.ktloadingbutton.KTLoadingButton
-        android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="16dp"
-        android:visibility="visible"
-        app:allCaps="false"
-        app:autoResetButtonAfterResult="false"
-        app:border_thickness="2dp"
-        app:buttonColor="@color/purple_500"
-        app:buttonName="@string/login_with_facebook"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
-
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
         android:layout_width="192dp"
