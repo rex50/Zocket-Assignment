@@ -59,6 +59,7 @@ class FragFBPages : BaseFragmentWithListener<FragFBPagesBinding, FragFBPages.OnF
 
     private fun setupObservers() {
         viewModel.pagesFlow.collectLatestWithLifecycle(this) { data ->
+            binding?.tvTitle?.visibility = View.GONE
             when(data.responseType) {
                 Status.LOADING -> {
                     showLoader(true)
@@ -66,6 +67,7 @@ class FragFBPages : BaseFragmentWithListener<FragFBPagesBinding, FragFBPages.OnF
 
                 Status.SUCCESSFUL -> {
                     showLoader(false)
+                    binding?.tvTitle?.visibility = View.VISIBLE
                     data.data?.let { list ->
                         pagesAdapter.updatePages(list)
                     }

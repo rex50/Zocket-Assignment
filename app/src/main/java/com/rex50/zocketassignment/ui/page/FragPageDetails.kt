@@ -1,6 +1,7 @@
 package com.rex50.zocketassignment.ui.page
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.rex50.zocketassignment.data.models.PageData
@@ -63,36 +64,38 @@ class FragPageDetails : BaseFragmentWithListener<FragPageDetailsBinding, FragPag
         viewModel.pageData.collectLatestWithLifecycle(this) { data ->
             when(data.responseType) {
                 Status.LOADING -> {
-                    // TODO: Show loader
+                    showLoader(true)
                 }
 
                 Status.SUCCESSFUL -> {
+                    showLoader(false)
                     data.data?.let { page ->
                         currentPageData = page
                         updateUI(page)
-                        sendDataToServer(page)
                     }
                 }
 
                 Status.ERROR -> {
+                    showLoader(false)
                     // TODO: Update UI
+                    showToast("Problem while getting page details")
                 }
             }
         }
     }
 
-    private fun sendDataToServer(pageData: PageData) {
-        // TODO: send data to zocket server
-    }
-
     private fun updateUI(currentPageData: PageData) {
-        // TODO: Update UI
+        // Update UI
         binding?.apply {
             tvPageName.text = currentPageData.name
             ivPicture.loadImage(currentPageData.picture.data.url, animate = true)
             val details = viewModel.createDetailsList(currentPageData)
             detailsAdapter.update(details)
         }
+    }
+
+    private fun showLoader(show: Boolean) {
+        binding?.progressBar?.visibility = if(show) View.VISIBLE else View.GONE
     }
 
     interface OnFragHomeInteractionListener {

@@ -13,4 +13,5 @@
     <string name="fb_login_protocol_scheme">fb1234</string>
     <string name="group_picture">Group picture</string>
     <string name="update_page_details">Update page details</string>
+    <string name="select_a_page">Select a page</string>
 </resources>
