@@ -60,7 +60,7 @@ class FragLogin : BaseFragmentWithListener<FragLoginBinding, FragLogin.OnFragFBL
         fbCallbackManager = CallbackManager.Factory.create()
         binding?.loginButton?.apply {
             setPermissions(listOf(EMAIL, PUBLIC_PROFILE, BUSINESS_MANAGEMENT))
-            fragment = this@FragLogin
+            setFragment(this@FragLogin)
             registerCallback(fbCallbackManager, object : FacebookCallback<LoginResult?> {
                 override fun onSuccess(result: LoginResult?) {
                     result?.accessToken?.let { token ->

@@ -1,4 +1,4 @@
-package com.rex50.zocketassignment.data.datasource.interfaces
+package com.rex50.zocketassignment.data.datasource.local.sharedPrefs.userDetailProvider
 
 import com.rex50.zocketassignment.data.models.LongLivedAccessTokenData
 

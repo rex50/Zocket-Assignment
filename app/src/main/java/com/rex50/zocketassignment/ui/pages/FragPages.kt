@@ -60,7 +60,7 @@ class FragPages : BaseFragmentWithListener<FragPagesBinding, FragPages.OnFragFBP
     private fun setupObservers() {
         viewModel.pagesFlow.collectLatestWithLifecycle(this) { data ->
             binding?.tvTitle?.visibility = View.GONE
-            when(data.responseType) {
+            when(data.status) {
                 Status.LOADING -> {
                     showLoader(true)
                 }

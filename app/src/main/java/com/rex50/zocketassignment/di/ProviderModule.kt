@@ -1,12 +1,11 @@
 package com.rex50.zocketassignment.di
 
-import com.rex50.zocketassignment.data.datasource.interfaces.UserDetailsProvider
-import com.rex50.zocketassignment.data.datasource.local.sharedPrefs.UserDetailsProviderImpl
+import com.rex50.zocketassignment.data.datasource.local.sharedPrefs.userDetailProvider.UserDetailsProvider
+import com.rex50.zocketassignment.data.datasource.local.sharedPrefs.userDetailProvider.UserDetailsProviderImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)

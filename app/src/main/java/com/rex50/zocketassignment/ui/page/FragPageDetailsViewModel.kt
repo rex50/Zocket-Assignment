@@ -25,22 +25,22 @@ constructor(
         private const val TAG = "FragPageDetailsViewModel"
     }
 
-    private val _pageData: MutableStateFlow<Data<PageData>> = MutableStateFlow(Data(responseType = Status.LOADING))
+    private val _pageData: MutableStateFlow<Data<PageData>> = MutableStateFlow(Data(status = Status.LOADING))
     val pageData = _pageData.asStateFlow()
 
     fun getPageInfo() = viewModelScope.launch {
-        _pageData.emit(Data(responseType = Status.LOADING))
+        _pageData.emit(Data(status = Status.LOADING))
         when(val result = pagesRepo.getSelectedPage()) {
             is Result.Success -> _pageData.emit(
                 Data(
-                    responseType = Status.SUCCESSFUL,
+                    status = Status.SUCCESSFUL,
                     data = result.data
                 )
             )
 
             is Result.Failure -> _pageData.emit(
                 Data(
-                    responseType = Status.ERROR,
+                    status = Status.ERROR,
                     error = result.exception
                 )
             )
@@ -48,13 +48,13 @@ constructor(
     }
 
     fun updatePageInfo(pageData: PageData) = viewModelScope.launch {
-        _pageData.emit(Data(responseType = Status.LOADING))
+        _pageData.emit(Data(status = Status.LOADING))
         when(val result = pagesRepo.updatePage(pageData)) {
             is Result.Success -> {
                 pagesRepo.cachePage(result.data)
                 _pageData.emit(
                     Data(
-                        responseType = Status.SUCCESSFUL,
+                        status = Status.SUCCESSFUL,
                         data = result.data
                     )
                 )
@@ -62,7 +62,7 @@ constructor(
             }
             is Result.Failure -> _pageData.emit(
                 Data(
-                    responseType = Status.ERROR,
+                    status = Status.ERROR,
                     error = result.exception
                 )
             )

@@ -1,6 +1,6 @@
 package com.rex50.zocketassignment.data.repos.meta.auth
 
-import com.rex50.zocketassignment.data.datasource.interfaces.UserDetailsProvider
+import com.rex50.zocketassignment.data.datasource.local.sharedPrefs.userDetailProvider.UserDetailsProvider
 import com.rex50.zocketassignment.data.datasource.remote.AuthRemoteDataSourceImpl
 import com.rex50.zocketassignment.data.models.LongLivedAccessTokenData
 import com.rex50.zocketassignment.data.models.LongLivedTokenRequest

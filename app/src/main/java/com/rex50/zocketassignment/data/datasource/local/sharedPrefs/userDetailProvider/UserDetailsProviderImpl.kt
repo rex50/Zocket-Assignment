@@ -1,9 +1,9 @@
-package com.rex50.zocketassignment.data.datasource.local.sharedPrefs
+package com.rex50.zocketassignment.data.datasource.local.sharedPrefs.userDetailProvider
 
 import com.facebook.AccessToken
 import com.google.gson.Gson
 import com.pixplicity.easyprefs.library.Prefs
-import com.rex50.zocketassignment.data.datasource.interfaces.UserDetailsProvider
+import com.rex50.zocketassignment.data.datasource.local.sharedPrefs.SharedPrefsKeys
 import com.rex50.zocketassignment.data.models.LongLivedAccessTokenData
 import java.lang.Exception
 

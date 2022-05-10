@@ -20,24 +20,24 @@ constructor(
     private val pagesRepo: PagesRepo
 ) : ViewModel() {
 
-    private val _pagesFlow: MutableStateFlow<Data<List<PageData>>> = MutableStateFlow(Data(responseType = Status.LOADING))
+    private val _pagesFlow: MutableStateFlow<Data<List<PageData>>> = MutableStateFlow(Data(status = Status.LOADING))
     val pagesFlow = _pagesFlow.asStateFlow()
 
     fun fetchPages() = viewModelScope.launch {
-        _pagesFlow.emit(Data(responseType = Status.LOADING))
+        _pagesFlow.emit(Data(status = Status.LOADING))
         when(val result = pagesRepo.fetchPages()) {
             is Result.Success -> {
                 pagesRepo.cachePages(result.data)
                 _pagesFlow.emit(
                     Data(
-                        responseType = Status.SUCCESSFUL,
+                        status = Status.SUCCESSFUL,
                         result.data
                     )
                 )
             }
             is Result.Failure -> _pagesFlow.emit(
                 Data(
-                    responseType = Status.ERROR,
+                    status = Status.ERROR,
                     error = result.exception
                 )
             )

@@ -62,7 +62,7 @@ class FragPageDetails : BaseFragmentWithListener<FragPageDetailsBinding, FragPag
 
     private fun setupObservers() {
         viewModel.pageData.collectLatestWithLifecycle(this) { data ->
-            when(data.responseType) {
+            when(data.status) {
                 Status.LOADING -> {
                     showLoader(true)
                 }

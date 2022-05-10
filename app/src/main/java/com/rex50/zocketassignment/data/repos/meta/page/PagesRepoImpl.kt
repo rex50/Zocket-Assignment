@@ -1,6 +1,6 @@
 package com.rex50.zocketassignment.data.repos.meta.page
 
-import com.rex50.zocketassignment.data.datasource.interfaces.UserDetailsProvider
+import com.rex50.zocketassignment.data.datasource.local.sharedPrefs.userDetailProvider.UserDetailsProvider
 import com.rex50.zocketassignment.data.datasource.local.room.PageLocalDataSourceImpl
 import com.rex50.zocketassignment.data.datasource.remote.PageRemoteDataSourceImpl
 import com.rex50.zocketassignment.data.datasource.remote.mappers.PageDataMapper
